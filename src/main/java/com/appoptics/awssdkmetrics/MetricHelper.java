@@ -9,6 +9,7 @@ import org.mpierce.metrics.reservoir.hdrhistogram.HdrHistogramResetOnSnapshotRes
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -90,7 +91,9 @@ class MetricHelper {
             return metric;
         }
 
-        List<Tag> tags = k.tags.stream().map(t -> new Tag(t.name, t.value.replace(" ", "")))
+        List<Tag> tags = k.tags.stream()
+                .sorted(Comparator.comparing(t -> t.name))
+                .map(t -> new Tag(t.name, t.value.replace(" ", "")))
                 .collect(Collectors.toList());
 
         return metric.tags(tags);
