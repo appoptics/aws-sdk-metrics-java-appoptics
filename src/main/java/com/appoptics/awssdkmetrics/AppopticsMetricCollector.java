@@ -1,10 +1,12 @@
 package com.appoptics.awssdkmetrics;
 
 import com.amazonaws.metrics.MetricCollector;
+import com.amazonaws.metrics.RequestMetricCollector;
+import com.amazonaws.metrics.ServiceMetricCollector;
 
 public class AppopticsMetricCollector extends MetricCollector {
-    private final com.amazonaws.metrics.RequestMetricCollector requestMetricCollector;
-    private final com.amazonaws.metrics.ServiceMetricCollector serviceMetricCollector;
+    private final RequestMetricCollector requestMetricCollector;
+    private final ServiceMetricCollector serviceMetricCollector;
 
     public AppopticsMetricCollector() {
         MetricHelper metricHelper = new MetricHelper();
@@ -29,12 +31,12 @@ public class AppopticsMetricCollector extends MetricCollector {
     }
 
     @Override
-    public com.amazonaws.metrics.RequestMetricCollector getRequestMetricCollector() {
+    public RequestMetricCollector getRequestMetricCollector() {
         return requestMetricCollector;
     }
 
     @Override
-    public com.amazonaws.metrics.ServiceMetricCollector getServiceMetricCollector() {
+    public ServiceMetricCollector getServiceMetricCollector() {
         return serviceMetricCollector;
     }
 }
