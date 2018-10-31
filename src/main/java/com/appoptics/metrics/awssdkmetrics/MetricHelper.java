@@ -1,10 +1,10 @@
-package com.appoptics.awssdkmetrics;
+package com.appoptics.metrics.awssdkmetrics;
 
+import com.appoptics.metrics.client.Tag;
+import com.appoptics.metrics.reporter.Appoptics;
 import com.codahale.metrics.Histogram;
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.Timer;
-import com.librato.metrics.client.Tag;
-import com.librato.metrics.reporter.Librato;
 import org.mpierce.metrics.reservoir.hdrhistogram.HdrHistogramResetOnSnapshotReservoir;
 
 import java.util.ArrayList;
@@ -83,10 +83,10 @@ class MetricHelper {
         return makeMetric(k).meter();
     }
 
-    private Librato makeMetric(MetricKey k) {
+    private Appoptics makeMetric(MetricKey k) {
         String name = String.format("aws-sdk.%s", k.name);
 
-        Librato metric = Librato.metric(name);
+        Appoptics metric = Appoptics.metric(name);
         if (k.tags.isEmpty()) {
             return metric;
         }

@@ -1,4 +1,4 @@
-package com.appoptics.awssdkmetrics;
+package com.appoptics.metrics.awssdkmetrics;
 
 
 import java.util.List;

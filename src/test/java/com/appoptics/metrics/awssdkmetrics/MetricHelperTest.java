@@ -1,11 +1,8 @@
-package com.appoptics.awssdkmetrics;
-
+package com.appoptics.metrics.awssdkmetrics;
 
 import com.codahale.metrics.Timer;
+import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 public class MetricHelperTest {
 
@@ -17,11 +14,11 @@ public class MetricHelperTest {
 
         Timer t2 = metricHelper.getTimer("foobar.metric", new MetricTag("blah", "bar"));
 
-        assertEquals(t1, t2);
+        Assert.assertEquals(t1, t2);
 
         t2 = metricHelper.getTimer("foobar.metric", new MetricTag("bar", "blah"));
 
-        assertNotEquals(t1, t2);
+        Assert.assertNotEquals(t1, t2);
 
         //
         // Multiple tags and ordering
@@ -35,17 +32,17 @@ public class MetricHelperTest {
                 new MetricTag("az", "b"),
                 new MetricTag("region", "us-east-1"));
 
-        assertEquals(t1, t2);
+        Assert.assertEquals(t1, t2);
 
         t2 = metricHelper.getTimer("foobar.metric",
                 new MetricTag("az", "c"),
                 new MetricTag("region", "us-east-1"));
 
-        assertNotEquals(t1, t2);
+        Assert.assertNotEquals(t1, t2);
 
         t2 = metricHelper.getTimer("foobar.metric",
                 new MetricTag("region", "us-east-1"));
 
-        assertNotEquals(t1, t2);
+        Assert.assertNotEquals(t1, t2);
     }
 }
