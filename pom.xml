@@ -6,6 +6,10 @@
     <artifactId>aws-sdk-metrics-appoptics</artifactId>
     <packaging>jar</packaging>
     <version>1.0.2-SNAPSHOT</version>
+    <name>AppOptics metric collector for AWS SDK</name>
+    <description>Implements a MetricCollector that collects metrics from the Java AWS SDK
+        calls and pushes those metrics to AppOptics using the dropwizard-metrics libraries.
+    </description>
     <url>https://github.com/appoptics/aws-sdk-metrics-java-appoptics</url>
 
     <properties>
