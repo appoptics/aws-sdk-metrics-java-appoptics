@@ -1,5 +1,4 @@
-package com.appoptics.awssdkmetrics;
-
+package com.appoptics.metrics.awssdkmetrics;
 
 import com.codahale.metrics.Timer;
 import org.junit.Test;

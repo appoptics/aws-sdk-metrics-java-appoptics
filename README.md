@@ -26,28 +26,28 @@ the AWS service name and service operation name (if applicable).
 # Dependency Setup
 
 Add the following to your pom.xml in your Java project that uses the AWS
-SDK:
+SDK.
 
 ```
 <dependency>
-  <groupId>com.appoptics</groupId>
+  <groupId>com.appoptics.metrics</groupId>
   <artifactId>aws-sdk-metrics-appoptics</artifactId>
   <version>1.0.1</version>
 </dependency>
 ```
 
 This library depends on the
-[metrics-librato](https://github.com/librato/metrics-librato)
+[metrics-appoptics](https://github.com/appoptics/metrics-appoptics)
 reporter, ensure you have included that in your pom.xml. Follow the
 instructions at
-[metrics-librato](https://github.com/librato/metrics-librato) to
+[metrics-appoptics](https://github.com/appoptics/metrics-appoptics) to
 configure the credentials pointed to your AppOptics account.
 
 ```
 <dependency>
-  <groupId>com.librato.metrics</groupId>
-  <artifactId>metrics-librato</artifactId>
-  <version>5.1.3</version>
+  <groupId>com.appoptics.metrics</groupId>
+  <artifactId>metrics-appoptics</artifactId>
+  <version>1.0.2</version>
 </dependency>
 ```
 

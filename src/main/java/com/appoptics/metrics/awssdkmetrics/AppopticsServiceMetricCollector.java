@@ -1,4 +1,4 @@
-package com.appoptics.awssdkmetrics;
+package com.appoptics.metrics.awssdkmetrics;
 
 import com.amazonaws.metrics.*;
 import com.codahale.metrics.Histogram;

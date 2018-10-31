@@ -1,4 +1,4 @@
-package com.appoptics.awssdkmetrics;
+package com.appoptics.metrics.awssdkmetrics;
 
 import com.amazonaws.metrics.MetricCollector;
 import com.amazonaws.metrics.RequestMetricCollector;
