@@ -5,7 +5,7 @@
     <groupId>com.appoptics.metrics</groupId>
     <artifactId>aws-sdk-metrics-appoptics</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <url>https://github.com/appoptics/aws-sdk-metrics-java-appoptics</url>
 
     <properties>
@@ -19,7 +19,7 @@
         <url>https://github.com/appoptics/aws-sdk-metrics-java-appoptics</url>
         <connection>scm:git:git://github.com/appoptics/aws-sdk-metrics-java-appoptics</connection>
         <developerConnection>scm:git:git@github.com:appoptics/aws-sdk-metrics-java-appoptics</developerConnection>
-        <tag>HEAD</tag>
+        <tag>aws-sdk-metrics-appoptics-1.0.2</tag>
     </scm>
 
     <licenses>
