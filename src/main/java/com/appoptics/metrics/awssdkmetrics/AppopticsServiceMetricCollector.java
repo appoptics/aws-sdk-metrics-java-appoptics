@@ -4,11 +4,15 @@ import com.amazonaws.metrics.*;
 import com.codahale.metrics.Histogram;
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.Timer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class AppopticsServiceMetricCollector extends ServiceMetricCollector {
+    private static final Logger log = LoggerFactory.getLogger(AppopticsServiceMetricCollector.class);
+
     private static final double NANO_PER_SEC = TimeUnit.SECONDS.toNanos(1);
 
     private final MetricHelper metricHelper;
@@ -25,13 +29,17 @@ public class AppopticsServiceMetricCollector extends ServiceMetricCollector {
         final double byteCount = provider.getByteCount();
 
         if (metrics.contains(throughputType)) {
-            double durationNano = provider.getDurationNano();
-            Double bytesPerSec = bytesPerSecond(byteCount, durationNano);
+            try {
+                double durationNano = provider.getDurationNano();
+                Double bytesPerSec = bytesPerSecond(byteCount, durationNano);
 
-            Histogram h = metricHelper.getHistogram(throughputType.name(),
-                    MetricTag.awsServiceTag(throughputType.getServiceName()));
+                Histogram h = metricHelper.getHistogram(throughputType.name(),
+                        MetricTag.awsServiceTag(throughputType.getServiceName()));
 
-            h.update(bytesPerSec.longValue());
+                h.update(bytesPerSec.longValue());
+            } catch (IllegalArgumentException e) {
+                log.warn("Got invalid byte count or duration for {}", throughputType.name());
+            }
         }
 
         if (metrics.contains(byteCountType)) {
@@ -57,16 +65,12 @@ public class AppopticsServiceMetricCollector extends ServiceMetricCollector {
         }
     }
 
-    /**
-     * Returns the number of bytes per second, given the byte count and
-     * duration in nano seconds.  Duration of zero nanosecond will be treated
-     * as 1 nanosecond.
-     */
+    // duration less than 1.0 is converted to 1 nanosec
     private double bytesPerSecond(double byteCount, double durationNano) {
         if (byteCount < 0 || durationNano < 0)
             throw new IllegalArgumentException();
-        if (durationNano == 0) {
-            durationNano = 1.0;   // defend against division by zero
+        if (durationNano < 1.0) {
+            durationNano = 1.0;
         }
         return (byteCount / durationNano) * NANO_PER_SEC;
     }
