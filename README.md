@@ -5,6 +5,9 @@ metrics](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/generating-
 to [AppOptics](https://appoptics.com). Useful to debug application
 performance for any Java app that interacts with AWS via the AWS SDK.
 
+![AWS SDK Dashboard](https://github.com/appoptics/aws-sdk-metrics-java-appoptics/blob/master/awssdk_dashboard.png "AWS SDK Dashboard")
+
+
 Metrics reported:
 
 * ClientExecuteTime
@@ -32,7 +35,7 @@ SDK.
 <dependency>
   <groupId>com.appoptics.metrics</groupId>
   <artifactId>aws-sdk-metrics-appoptics</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
