@@ -22,8 +22,12 @@ Metrics reported:
 * RetryCapacityConsumed
 * RetryCount
 
-Plus additional service-specific metrics. All metrics are tagged with
-the AWS service name and service operation name (if applicable).
+Plus additional service-specific metrics (eg. `S3UploadThroughput` and 
+`S3UploadByteCount`). Metrics are tagged with the following values when
+applicable:
+
+* aws_service (amazons3, amazonsqs, etc)
+* request_type (putobjectrequest, sendmessagebatchrequest, etc)
 
 
 # Dependency Setup
