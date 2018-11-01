@@ -35,7 +35,7 @@ applicable:
 Add the following to your pom.xml in your Java project that uses the AWS
 SDK.
 
-```
+```xml
 <dependency>
   <groupId>com.appoptics.metrics</groupId>
   <artifactId>aws-sdk-metrics-appoptics</artifactId>
@@ -45,12 +45,11 @@ SDK.
 
 This library depends on the
 [metrics-appoptics](https://github.com/appoptics/metrics-appoptics)
-reporter, ensure you have included that in your pom.xml. Follow the
-instructions at
-[metrics-appoptics](https://github.com/appoptics/metrics-appoptics) to
-configure the credentials pointed to your AppOptics account.
+reporter to publish Dropwizard metrics to AppOptics. Make sure to include the 
+[latest version](https://search.maven.org/search?q=g:com.appoptics.metrics%20AND%20a:metrics-appoptics&core=gav) 
+in your project.
 
-```
+```xml
 <dependency>
   <groupId>com.appoptics.metrics</groupId>
   <artifactId>metrics-appoptics</artifactId>
@@ -58,11 +57,26 @@ configure the credentials pointed to your AppOptics account.
 </dependency>
 ```
 
-Similarly, you need to include the `aws-java-sdk-cloudwatchmetrics`
-package to get the `SdkMetrics` support, so include the version
-matching your current AWS SDK version:
+The following example is the basic initialization required for starting the 
+metrics-appoptics reporter with your AppOptics API token. Follow the instructions 
+at [metrics-appoptics](https://github.com/appoptics/metrics-appoptics) for complete
+configuration options. The 
+[dropwizard-metrics-appoptics](https://github.com/appoptics/dropwizard-metrics-appoptics) 
+package also provides simple integration for Dropwizard projects.
 
+```java
+MetricRegistry registry = environment.metrics();
+Appoptics.reporter(registry, "<AppOptics API Token>")
+    .addTag("tier", "web")
+    .addTag("environment", "staging")
+    .start(10, TimeUnit.SECONDS);
 ```
+
+Similarly, you need to include the `aws-java-sdk-cloudwatchmetrics`
+package to get the `SdkMetrics` support. Make sure to include the version
+that matches your current AWS SDK version.
+
+```xml
 <dependency>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-java-sdk-cloudwatchmetrics</artifactId>
@@ -74,7 +88,7 @@ matching your current AWS SDK version:
 In your application startup, add the AppOptics MetricsCollector to
 your application:
 
-```
+```java
 AwsSdkMetrics.setMetricCollector(new AppopticsMetricCollector());
 ```
 
