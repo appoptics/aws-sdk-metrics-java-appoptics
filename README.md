@@ -3,7 +3,7 @@
 Reports [AWS SDK
 metrics](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/generating-sdk-metrics.html)
 to [AppOptics](https://appoptics.com). Useful to debug application
-performance for any Java app that interacts with AWS via the AWS SDK.
+performance for any Java app that interacts with AWS APIs via the AWS SDK.
 
 ![AWS SDK Dashboard](https://github.com/appoptics/aws-sdk-metrics-java-appoptics/blob/master/awssdk_dashboard.png "AWS SDK Dashboard")
 
